@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+<div class="container">
+    <div>
+
+        <div id="cart-items">
+            <p class="header">Cart  <span class="counter" id="counter"> </span></p>
+            
+        </div>
+
+
+        
+    </div>
+    <div>
+
+        <div id="cart-summary">
+            <p class="left">Quantity<span class="right" id="q"></span> Items</p>
+            
+            <p class="left">Subtotal<span class="right" id="sub"></span> $</p>           
+            <a href=""><button title="Checkout" id="checkout" >Checkout</button></a>  
+        </div>
+
+        <div id="pay">
+            <div class="section">
+                <span class="icon">
+                    <img src="./Images/wallet.png" >
+                </span>
+                <div class="text">
+                    <p class="bold">Pay on delivery </p>
+
+                       
+                    <p>For all orders</p>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="section">
+                <span class="icon">
+                    <img src="./Images/return.png" >
+                </span>
+                <div class="text">
+                    <p class="bold"> Return policy</p>
+
+                       
+                    <p>Most items can be returned within 30 days of delivery</p>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="section">
+                <span class="icon">
+                    <img src="./Images/help.png" >
+                </span>
+                <div class="text">
+                    <p class="bold">Have a question?</p>
+                    <a href="">19966</a>
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </div> 
+    
+        
+</div>
+
+
+<div id="fav-items">
+    <p class="header">Favorite Items  
+        <span class="counter" id="fav-counter"> </span>
+        <img class="arrow" src="./Images/chevron-down.png" onclick="show()"></img>
+    </p>
+    
+
+
+</div>
+    
+    
+
+    
+
+    
+    <script src="cart.js"></script>
+</body>
+</html>
