@@ -64,16 +64,22 @@ function displayProducts(categories) {
                                 </div>  
                                 <div class="action">  
                                     <select calss="num">
-                                        <option value="1"> 1 </option>
-                                        <option value="2"> 2 </option>
+                                        
                                     </select>
-                                    <a class="delete" href="" onclick="remove_cart(${category.id},${product.id})"><img src="./Images/delete-trash.png">Remove</a><br>
-                                    <a class="delete" href="" onclick="add_fav(${category.id},${product.id})"><img src="./Images/fav1.png">Save to later</a>
+                                    <a class="delete" onclick="popup(${category.id},${product.id})"><img src="./Images/delete-trash.png"> Remove</a><br>
+                                    <a class="delete" href="" onclick="add_fav(${category.id},${product.id})"><img src="./Images/fav1.png"> Save to later</a>
                                     
 
                             </div>`;
 
-
+                        Array.from(document.getElementsByTagName("select")).forEach(element => {
+                            for (let op = 1; op <= product.quantity; op++) {
+                                console.log(product.quantity);
+                                
+                                element.innerHTML += `<option value="${op}"> ${op} </option>`;
+                                
+                            } 
+                        });
                         document.getElementById("q").innerHTML=counter.innerHTML;
                         document.getElementById("sub").innerHTML=subtotal;
                     }
@@ -101,10 +107,11 @@ function displayProducts(categories) {
                                 <div class="action">  
                                   
                                     <a href=""><button class="add-to-cart"   onclick="add_cart(${category.id},${product.id})" >Add to cart</button></a>
-                                    <a class="delete" href=""onclick="remove_fav(${category.id},${product.id})" ><img src="./Images/delete-trash.png">Remove</a><br>
+                                    <a class="delete" href="" onclick="remove_fav(${category.id},${product.id})" ><img src="./Images/delete-trash.png"> Remove</a><br>
                                     
 
                                     </div>`;
+
                     }
                 }
             })
@@ -131,7 +138,28 @@ function displayProducts(categories) {
                 
             
           
- 
+           
+function popup(c_id,p_id) 
+{
+
+    document.body.innerHTML +=  ` <div class="overlay">
+        <div class="modal">
+            <h2>Remove Product from cart?</h2>
+            <div class="modal-buttons">
+                <button class="modal-button cancel-button"  onclick="cancel()"  >Cancel</button>
+                <button class="modal-button confirm-button"  onclick="remove_cart(${c_id},${p_id})">Confirm</button>
+            </div><br>
+            <div class="additional-info">Not sure yet ? <span onclick="add_fav(${c_id},${p_id})">  &hearts; save for later </span></div>
+           
+        </div>
+    </div>`
+
+    
+}          
+function cancel() {
+    document.querySelector(".overlay").style.display = "none";
+    
+}
     
 
 function show () {
@@ -147,6 +175,7 @@ function  remove_cart(c_id , p_id) {
     i=cart.indexOf(`{c_id:${c_id},p_id:${p_id}}`)
     cart.splice(i,1)
     localStorage.setItem("cart-items",JSON.stringify(cart));
+    location.reload()
 
 }
 
@@ -160,6 +189,7 @@ function remove_fav(c_id,p_id) {
 function  add_cart(c_id , p_id) {
     cart =  JSON.parse(localStorage.getItem("cart-items"));
     cart.push({ c_id : c_id , p_id : p_id })
+    
     localStorage.setItem("cart-items",JSON.stringify(cart));
 
 }
